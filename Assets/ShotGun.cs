@@ -6,7 +6,7 @@ using VRTK;
 public class ShotGun : VRTK_InteractableObject {
 
 	private GameObject bullet;
-	private float bulletSpeed = 1000f;
+	private float bulletSpeed = 100f;
 	public float bulletLife = 5f;
 
 	public override void StartUsing(GameObject usingObject)
