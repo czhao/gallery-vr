@@ -18,11 +18,15 @@ public class GameController : MonoBehaviour {
 	IEnumerator SpawnWaves(){
 		yield return new WaitForSeconds (waitToStartWave);
 		while (true) {
-			GameObject ballon = Instantiate(harzard, Vector3.zero, harzard.transform.rotation) as GameObject;
+			//randomize the position a little bit
+			float deltaX = Random.Range(-0.02f, 0.02f);
+			float deltaZ = Random.Range(-0.02f, 0.02f);
+			Vector3 initPosition = new Vector3 (deltaX, 0, deltaZ);
+			GameObject ballon = Instantiate(harzard,  initPosition, harzard.transform.rotation) as GameObject;
 			ballon.SetActive(true);
 			Rigidbody rb = ballon.GetComponent<Rigidbody>();
-			//rb.AddForce(Vector3.up * BallonSpeed);
-			//rb.velocity = Vector3.up * 0.0001F;
+			rb.AddForce(Vector3.up * BallonSpeed, ForceMode.Acceleration);
+			rb.velocity = Vector3.up * 0.0001F;
 			Destroy(ballon, BallonLife);
 			yield return new WaitForSeconds (waitToStartWave);
 		}
