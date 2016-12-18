@@ -15,6 +15,6 @@ public class FlyUpPhysics : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		rb.AddForce(Vector3.up * thrust * Time.deltaTime, ForceMode.Impulse);
-		Debug.Log ("mass "+ rb.mass + " f"+thrust * Time.deltaTime);
+		//Debug.Log ("mass "+ rb.mass + " f"+thrust * Time.deltaTime);
 	}
 }
