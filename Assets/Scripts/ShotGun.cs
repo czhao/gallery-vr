@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
+using UnityEngine.UI;
 
 public class ShotGun : VRTK_InteractableObject {
 
@@ -9,6 +10,8 @@ public class ShotGun : VRTK_InteractableObject {
 	public GameObject bulletSpawn;
 	private float bulletSpeed = 200f;
 	private float bulletLife = 1f;
+	public GameObject scoreBoard;
+	private int count;
 
 	public override void StartUsing(GameObject usingObject)
 	{
@@ -33,6 +36,9 @@ public class ShotGun : VRTK_InteractableObject {
 			if (victim.CompareTag("Ballon")){
 				Destroy (victim, 0.1f);
 				Debug.Log ("hit!!");
+				Text score = scoreBoard.GetComponent<Text> ();
+				count++;
+				score.text = "" + count;
 			}
 		}
 		Destroy(bullet, bulletLife);
