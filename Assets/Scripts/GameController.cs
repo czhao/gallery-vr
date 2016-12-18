@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	public float waitToStartWave = 2f;
 	public GameObject harzard;
 	public float BallonLife = 5f;
-	private float BallonSpeed = 0.1f;
+	private float thrust = 1f;
 
 
 	// Use this for initialization
@@ -19,14 +19,11 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds (waitToStartWave);
 		while (true) {
 			//randomize the position a little bit
-			float deltaX = Random.Range(-0.02f, 0.02f);
-			float deltaZ = Random.Range(-0.02f, 0.02f);
+			float deltaX = Random.Range(-3f, 3f);
+			float deltaZ = Random.Range(-3f, 3f);
 			Vector3 initPosition = new Vector3 (deltaX, 0, deltaZ);
 			GameObject ballon = Instantiate(harzard,  initPosition, harzard.transform.rotation) as GameObject;
 			ballon.SetActive(true);
-			Rigidbody rb = ballon.GetComponent<Rigidbody>();
-			rb.AddForce(Vector3.up * BallonSpeed, ForceMode.Acceleration);
-			rb.velocity = Vector3.up * 0.0001F;
 			Destroy(ballon, BallonLife);
 			yield return new WaitForSeconds (waitToStartWave);
 		}
